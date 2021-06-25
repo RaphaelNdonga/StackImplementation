@@ -28,11 +28,15 @@ public class MainActivity extends AppCompatActivity {
         binding.push.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String item = stk.push("plate "+(stk.size()+1));
-                Objects.requireNonNull(binding.recyclerView.getAdapter())
-                        .notifyDataSetChanged();
-                Log.i("MainActivity", "Push has been clicked");
-                Snackbar.make(binding.constraintLayout, "Pushed this item to the stack: " + item, Snackbar.LENGTH_SHORT).show();
+                if (stk.size() > 7) {
+                    Snackbar.make(binding.constraintLayout, "Enough plates! ", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    String item = stk.push("plate " + (stk.size() + 1));
+                    Objects.requireNonNull(binding.recyclerView.getAdapter())
+                            .notifyDataSetChanged();
+                    Log.i("MainActivity", "Push has been clicked");
+                    Snackbar.make(binding.constraintLayout, "Pushed this item to the stack: " + item, Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     Objects.requireNonNull(binding.recyclerView.getAdapter())
                             .notifyDataSetChanged();
                     Snackbar.make(binding.recyclerView, "Popped this item off the stack: " + item, Snackbar.LENGTH_SHORT).show();
-                }catch (NegativeArraySizeException sizeException){
+                } catch (NegativeArraySizeException sizeException) {
                     Snackbar.make(binding.constraintLayout, "The stack is empty. Stop popping", Snackbar.LENGTH_SHORT).show();
 
                 }
@@ -75,8 +79,12 @@ public class MainActivity extends AppCompatActivity {
         binding.top.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String item = stk.peek();
-                Snackbar.make(binding.recyclerView, "The stack item at the top is: " + item, Snackbar.LENGTH_SHORT).show();
+                try {
+                    String item = stk.peek();
+                    Snackbar.make(binding.recyclerView, "The stack item at the top is: " + item, Snackbar.LENGTH_SHORT).show();
+                }catch (EmptyStackException emptyStackException){
+                    Snackbar.make(binding.recyclerView, "There is nothing at the top" , Snackbar.LENGTH_SHORT).show();
+                }
             }
         });
     }
