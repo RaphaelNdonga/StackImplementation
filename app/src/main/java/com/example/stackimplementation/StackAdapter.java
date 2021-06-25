@@ -27,11 +27,9 @@ public class StackAdapter extends RecyclerView.Adapter<StackAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.i("StackAdapter","The position is "+position);
-        if(position > 0) {
-            String currentItem = stk.getStackArray()[position-1];
-            holder.getTextView().setText(currentItem);
-        }
+        Log.i("StackAdapter", "The position is " + position);
+        String currentItem = stk.getStackArray()[position];
+        holder.getTextView().setText(currentItem);
     }
 
     @Override
@@ -46,7 +44,8 @@ public class StackAdapter extends RecyclerView.Adapter<StackAdapter.ViewHolder> 
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.list_txt);
         }
-        public TextView getTextView(){
+
+        public TextView getTextView() {
             return textView;
         }
     }

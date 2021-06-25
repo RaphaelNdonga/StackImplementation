@@ -25,7 +25,7 @@ public class CustomStack extends Stack<String> {
     @Override
     public String push(String item) {
         int length = this.size();
-        String [] tempArray = new String[50];
+        String [] tempArray = new String[length+1];
         for(int i=0;i<length;i++){
             tempArray[i] = stackArray[i];
         }
