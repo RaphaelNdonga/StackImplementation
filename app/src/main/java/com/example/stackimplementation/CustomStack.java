@@ -6,8 +6,7 @@ public class CustomStack extends Stack<String> {
     private String[] stackArray;
 
     public CustomStack() {
-        stackArray = new String[1];
-        stackArray[0] = "Hello world";
+        stackArray = new String[this.size()];
     }
 
     @Override
@@ -25,10 +24,13 @@ public class CustomStack extends Stack<String> {
 
     @Override
     public String push(String item) {
-        super.push(item);
         int length = this.size();
-        stackArray = new String[length];
-        stackArray[length-1] = item;
+        String [] tempArray = new String[50];
+        for(int i=0;i<length;i++){
+            tempArray[i] = stackArray[i];
+        }
+        tempArray[length] = item;
+        stackArray = tempArray;
 
         return super.push(item);
     }
