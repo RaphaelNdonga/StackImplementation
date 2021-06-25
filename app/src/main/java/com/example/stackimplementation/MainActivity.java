@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.stackimplementation.databinding.ActivityMainBinding;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.EmptyStackException;
 import java.util.Objects;
 import java.util.Stack;
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 String item = stk.push("hello");
                 Objects.requireNonNull(binding.recyclerView.getAdapter())
                         .notifyDataSetChanged();
-                Log.i("MainActivity","Push has been clicked");
+                Log.i("MainActivity", "Push has been clicked");
                 Snackbar.make(binding.constraintLayout, "Pushed this item to the stack: " + item, Snackbar.LENGTH_SHORT).show();
             }
         });
@@ -38,10 +39,16 @@ public class MainActivity extends AppCompatActivity {
         binding.pop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String item = stk.pop();
-                Objects.requireNonNull(binding.recyclerView.getAdapter())
-                        .notifyDataSetChanged();
-                Snackbar.make(binding.recyclerView, "Popped this item off the stack: " + item, Snackbar.LENGTH_SHORT).show();
+                try {
+                    String item = stk.pop();
+
+                    Objects.requireNonNull(binding.recyclerView.getAdapter())
+                            .notifyDataSetChanged();
+                    Snackbar.make(binding.recyclerView, "Popped this item off the stack: " + item, Snackbar.LENGTH_SHORT).show();
+                }catch (NegativeArraySizeException sizeException){
+                    Snackbar.make(binding.constraintLayout, "The stack is empty. Stop popping", Snackbar.LENGTH_SHORT).show();
+
+                }
             }
         });
 
