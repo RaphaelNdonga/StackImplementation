@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         binding.push.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String item = stk.push("hello");
+                String item = stk.push("plate "+(stk.size()+1));
                 Objects.requireNonNull(binding.recyclerView.getAdapter())
                         .notifyDataSetChanged();
                 Log.i("MainActivity", "Push has been clicked");
