@@ -10,11 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class StackAdapter extends RecyclerView.Adapter<StackAdapter.ViewHolder> {
-    private CustomStack stk;
+import java.util.Stack;
 
-    public StackAdapter(CustomStack customStk) {
-        stk = customStk;
+public class StackAdapter extends RecyclerView.Adapter<StackAdapter.ViewHolder> {
+    private Stack<String> stk;
+
+    public StackAdapter(Stack<String> stack) {
+        stk = stack;
     }
 
     @NonNull
@@ -29,7 +31,7 @@ public class StackAdapter extends RecyclerView.Adapter<StackAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.i("StackAdapter", "The position is " + position);
-        String currentItem = stk.getStackArray()[position];
+        String currentItem = stk.toArray(new String[0])[position];
         holder.getTextView().setText(currentItem);
     }
 
