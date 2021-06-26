@@ -31,7 +31,14 @@ public class StackAdapter extends RecyclerView.Adapter<StackAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.i("StackAdapter", "The position is " + position);
-        String currentItem = stk.toArray(new String[0])[position];
+        String[] array = stk.toArray(new String[0]);
+        int j = stk.size();
+        String[] reversedArray = new String[stk.size()];
+        for(int i = 0;i<stk.size();i++){
+            reversedArray[j-1] = array[i];
+            j--;
+        }
+        String currentItem = reversedArray[position];
         holder.getTextView().setText(currentItem);
     }
 
