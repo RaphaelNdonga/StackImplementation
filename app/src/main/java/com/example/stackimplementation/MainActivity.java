@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         binding.push.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (stk.size() > 7) {
+                if (stk.size() > 5) {
                     Snackbar.make(binding.constraintLayout, "Enough plates! ", Snackbar.LENGTH_SHORT).show();
                 } else {
                     String item = stk.push("plate " + (stk.size() + 1));
