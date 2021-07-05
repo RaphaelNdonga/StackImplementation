@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
-    private final Stack<String> stk = new Stack<String>();
+    private final CustomStack stk = new CustomStack();
     ActivityMainBinding binding;
 
     @Override
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     Objects.requireNonNull(binding.recyclerView.getAdapter())
                             .notifyDataSetChanged();
                     Snackbar.make(binding.recyclerView, "Popped this item off the stack: " + item, Snackbar.LENGTH_SHORT).show();
-                } catch (EmptyStackException emptyStackException) {
+                } catch (NegativeArraySizeException sizeException) {
                     Snackbar.make(binding.constraintLayout, "The stack is empty. Stop popping", Snackbar.LENGTH_SHORT).show();
 
                 }

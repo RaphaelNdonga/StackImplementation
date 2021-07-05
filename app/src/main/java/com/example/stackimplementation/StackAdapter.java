@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Stack;
 
 public class StackAdapter extends RecyclerView.Adapter<StackAdapter.ViewHolder> {
-    private Stack<String> stk;
+    private CustomStack stk;
 
-    public StackAdapter(Stack<String> stack) {
+    public StackAdapter(CustomStack stack) {
         stk = stack;
     }
 
@@ -31,7 +31,7 @@ public class StackAdapter extends RecyclerView.Adapter<StackAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.i("StackAdapter", "The position is " + position);
-        String[] array = stk.toArray(new String[0]);
+        String[] array = stk.getStackArray();
         int j = stk.size();
         String[] reversedArray = new String[stk.size()];
         for(int i = 0;i<stk.size();i++){
